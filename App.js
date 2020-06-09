@@ -24,16 +24,12 @@ import HomeScreen from './screen/HomeScreen';
 import SearchScreen from './screen/SearchScreen';
 import NewsScreen from './screen/NewsScreen';
 
-
+import { Header } from 'react-native-elements';
 
 const Stack = createStackNavigator();
 export default function App() {
-  const someData = {
-    a: '111',
-    b: '222',
-  };
-
   return (
+    
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
@@ -49,6 +45,8 @@ export default function App() {
         <Stack.Screen
           name="News"
           component={NewsScreen}
+          options = {{ title : 'Fake News'}}
+          
         />
       </Stack.Navigator>
     </NavigationContainer>

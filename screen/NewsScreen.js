@@ -8,6 +8,7 @@ import {
   StatusBar,
   Button
 } from 'react-native';
+import { Header,Icon } from 'react-native-elements';
 
 const NewsScreen = ({route,navigation}) => {
   return (
