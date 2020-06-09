@@ -15,6 +15,7 @@ import {
   Text,
   StatusBar,
   Button,
+  Dimensions
 } from 'react-native';
 
 import {NavigationContainer, StackActions} from '@react-navigation/native';
@@ -26,8 +27,10 @@ import NewsScreen from './screen/NewsScreen';
 
 import { Header } from 'react-native-elements';
 
+import { TabView, SceneMap } from 'react-native-tab-view';
+
 const Stack = createStackNavigator();
-export default function App() {
+function Appxxx() {
   return (
     
     <NavigationContainer>
@@ -52,3 +55,54 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+
+const FirstRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#ff4081' }]} />
+);
+ 
+const SecondRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#673ab7' }]} />
+);
+
+const ThirdRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#FF0000' }]} />
+);
+
+const ForthRoute = () => (
+  <View style={[styles.scene, { backgroundColor: '#EAEAEA' }]} />
+);
+ 
+const initialLayout = { width: Dimensions.get('window').width };
+
+export default function App() {
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'first', title: 'First' },
+    { key: 'second', title: 'Second' },
+    { key: 'third', title: 'Third' },
+    { key: 'forth', title: 'Forth' },
+  ]);
+ 
+  const renderScene = SceneMap({
+    first: FirstRoute,
+    second: SecondRoute,
+    third: ThirdRoute,
+    forth: ForthRoute,
+  });
+ 
+  return (
+    <TabView
+      navigationState={{ index, routes }}
+      renderScene={renderScene}
+      onIndexChange={setIndex}
+      initialLayout={initialLayout}
+    />
+  );
+}
+ 
+const styles = StyleSheet.create({
+  scene: {
+    flex: 1,
+  },
+});
